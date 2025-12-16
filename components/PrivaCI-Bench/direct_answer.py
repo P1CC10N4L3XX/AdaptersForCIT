@@ -48,7 +48,7 @@ def main(args):
         predictions = []
         results = []
         for i, cur_case in enumerate(tqdm(case_dataset)):
-            #if i > 2: break
+            if i > 2: break
             case_content = cur_case['case_content']
             norm_type = cur_case['norm_type']
             # ci elements
