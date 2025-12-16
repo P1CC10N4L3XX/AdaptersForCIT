@@ -41,7 +41,7 @@ def main(args):
     result_save_path = args.log_path.replace('.txt', '_results.txt')
     for domain in args.domains.split('+'):
         assert domain in ['GDPR', 'HIPAA', 'AI_ACT', 'ACLU'], 'Invalid domain name' 
-        KB_dataset = KBs[domain]
+        #KB_dataset = KBs[domain]
         case_dataset = cases[domain]
     #events = events[:5]
     ### if use api, replace chatbot with empty string
