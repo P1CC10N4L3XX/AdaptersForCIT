@@ -18,3 +18,5 @@ HF_MCQ_path = os.path.join(BASE_DIR, 'HF_cache', 'MCQ')
 
 #other paras
 MAX_REFERENCE_NUM = 10
+
+K_FOLD_DATASET_PATH = os.path.join(BASE_DIR, 'HF_cache', 'k_fold_cases')
