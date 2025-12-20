@@ -1,6 +1,8 @@
 from datasets import load_from_disk, DatasetDict, Dataset
 from sklearn.model_selection import StratifiedKFold
+import numpy as np
 import config
+from utils import *
 
 def make_cases_dataset_CV():
     dataset_cases = get_local_case_dataset()
@@ -19,14 +21,14 @@ def make_cases_dataset_CV():
         domain_folds[domain_name] = []
 
         for train_index, test_index in skf.split(dataset_cases_for_domain, norm_types):
-            train = dataset_cases_for_domain[train_index].tolist(),
+            train = dataset_cases_for_domain[train_index].tolist()
             test = dataset_cases_for_domain[test_index].tolist()
             domain_folds[domain_name].append((train,test))
     return domain_folds
 
 def save_k_fold_dataset(domain_folds, output_path=config.K_FOLD_DATASET_PATH):
-    os.makedirs(output_path, exists_ok = True)
-    num_folds = len(next(iter(domain_fols.values())))
+    os.makedirs(output_path, exist_ok = True)
+    num_folds = len(next(iter(domain_folds.values())))
     for fold_id in range(num_folds):
         fold_dir = os.path.join(output_path, f'fold_{fold_id}')
         os.makedirs(fold_dir, exist_ok = True)
@@ -50,6 +52,3 @@ def save_k_fold_dataset(domain_folds, output_path=config.K_FOLD_DATASET_PATH):
 if __name__ == "__main__":
     domain_folds = make_cases_dataset_CV()
     save_k_fold_dataset(domain_folds)
-
-    
-            
