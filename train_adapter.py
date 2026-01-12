@@ -14,7 +14,7 @@ SPECIAL_TOKENS = ["<CI>", "</CI>", "<VERDICT>", "</VERDICT>"]
 
 if __name__ == '__main__':
     chatbot = TrainableHuggingfaceChatbot(
-        model="TinyLlama/TinyLlama-1.1B-Chat"
+        model="meta-llama/Llama-3.2-1B-Instruct"
     )
     
 
