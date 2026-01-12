@@ -2,7 +2,7 @@ from agents import HuggingfaceChatbot
 from peft import LoraConfig, get_peft_model, PeftModel
 from transformers import Trainer, TrainingArguments, DataCollatorForLanguageModeling
 import torch
-from load_dataset_cv import *
+
 
 class TrainableHuggingfaceChatbot(HuggingfaceChatbot):
     def __init__(self, model, adapter_path = None, loar_r = 8, lora_alpha = 32, lora_dropout = 0.05, target_modules = ("q_proj", "v_proj") , max_mem_per_gpu='80Gib'):
