@@ -19,7 +19,7 @@ class TrainableHuggingfaceChatbot(HuggingfaceChatbot):
                 lora_dropout = lora_dropout,
                 target_modules = list(target_modules),
                 bias = "none",
-                task_type = "CASUAL_LM"
+                task_type = "CAUSAL_LM"
             )
             self.model = get_peft_model(self.model, lora_config)
         self.model.print_trainable_parameters()
