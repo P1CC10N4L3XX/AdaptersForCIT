@@ -1,4 +1,4 @@
-from privaci_bench import HuggingfaceChatbot
+from agents import HuggingfaceChatbot
 from peft import LoraConfig, get_peft_model, PeftModel
 from trl import SFTTrainer
 from transformers import Trainer, TrainingArguments, DataCollatorForLanguageModeling
