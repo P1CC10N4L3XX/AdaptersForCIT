@@ -1,5 +1,5 @@
 from transformers import Trainer, TrainingArguments
-
+from TrainableHuggingfaceChatbot import TrainableHuggingfaceChatbot
 
 MODEL_NAME = "meta-llama/Llama-2-7b-hf"
 DOMAIN = "GDPR"
