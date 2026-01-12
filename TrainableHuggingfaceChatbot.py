@@ -1,6 +1,5 @@
 from agents import HuggingfaceChatbot
 from peft import LoraConfig, get_peft_model, PeftModel
-from trl import SFTTrainer
 from transformers import Trainer, TrainingArguments, DataCollatorForLanguageModeling
 import torch
 from load_dataset_cv import *
