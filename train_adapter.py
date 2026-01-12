@@ -11,7 +11,6 @@ LAMBDA_VERDICT = 0.4
 
 SPECIAL_TOKENS = ["<CI>", "</CI>", "<VERDICT>", "</VERDICT>"]
 
-DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 
 if __name__ == '__main__':
     chatbot = TrainableHuggingfaceChatbot(
