@@ -1,5 +1,17 @@
-from transformers import Trainer, TrainingArguments
 from TrainableHuggingfaceChatbot import TrainableHuggingfaceChatbot
+import json
+import pandas as pd
+import torch
+
+from datasets import Dataset
+from transformers import (
+    AutoTokenizer,
+    Trainer,
+    TrainingArguments,
+    DataCollatorForLanguageModeling,
+)
+
+from peft import LoraConfig, get_peft_model, PeftModel
 
 MODEL_NAME = "HuggingFaceTB/SmolLM2-1.7B-Instruct"
 CSV_PATH = "/GDPR.csv"
