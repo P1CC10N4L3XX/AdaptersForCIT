@@ -14,7 +14,7 @@ class TrainableHuggingfaceChatbot(HuggingfaceChatbot):
             )
         else:
             lora_config = LoraConfig(
-                r = loar_r,
+                r = lora_r,
                 lora_alpha = lora_alpha,
                 lora_dropout = lora_dropout,
                 target_modules = list(target_modules),
