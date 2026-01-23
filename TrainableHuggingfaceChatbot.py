@@ -5,7 +5,7 @@ import torch
 
 
 class TrainableHuggingfaceChatbot(HuggingfaceChatbot):
-    def __init__(self, model, adapter_path = None, loar_r = 8, lora_alpha = 32, lora_dropout = 0.05, target_modules = ("q_proj", "v_proj") , max_mem_per_gpu='80Gib'):
+    def __init__(self, model, adapter_path = None, lora_r = 8, lora_alpha = 32, lora_dropout = 0.05, target_modules = ("q_proj", "v_proj") , max_mem_per_gpu='80Gib'):
         super().__init__(model, max_mem_per_gpu)
         if adapter_path is not None:
             self.model = PeftModel.from_pretrained(
