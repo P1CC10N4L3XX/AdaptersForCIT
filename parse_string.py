@@ -136,24 +136,38 @@ class LlamaParser:
 
 
     def parse_decision(self, response):
-        ret = {"response":response}
-        response = response.replace("**", ":")
-        response = response.split("\n")
-        for r in response:
-            if "choice:" in r.lower():
-                if "not related" in r.lower():
-                    ret["decision"] = "not applicable"
-                elif "permitted" in r.lower():
-                    ret["decision"] = "positive"
-                elif "prohibited" in r.lower():
-                    ret["decision"] = "negative"
-            if "reason:" in r.lower():
-                ret["reason"] = r.replace("::", "").strip(":")
+    ret = {"response": response}
+    lines = response.replace("**", "").split("\n")
 
-        if not "decision" in ret:
-            self.decision_errors.append("\n".join(response))
-            raise ValueError("Decision Value Error!")
-        return ret
+    for r in lines:
+        r_low = r.lower().strip()
+
+        # NUOVO: match senza "Choice:"
+        if r_low.startswith(("a.", "a ")):
+            ret["decision"] = "negative"
+        elif r_low.startswith(("b.", "b ")):
+            ret["decision"] = "positive"
+        elif r_low.startswith(("c.", "c ")):
+            ret["decision"] = "not applicable"
+
+        # fallback vecchio
+        if "choice:" in r_low:
+            if "not related" in r_low:
+                ret["decision"] = "not applicable"
+            elif "permitted" in r_low:
+                ret["decision"] = "positive"
+            elif "prohibited" in r_low:
+                ret["decision"] = "negative"
+
+        if "reason" in r_low:
+            ret["reason"] = r
+
+    if "decision" not in ret:
+        self.decision_errors.append("\n".join(lines))
+        raise ValueError("Decision Value Error!")
+
+    return ret
+
 
 
     def parse_decision_judge(self, response):
