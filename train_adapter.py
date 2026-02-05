@@ -12,7 +12,7 @@ from transformers import (
 )
 
 from TrainableHuggingfaceChatbot import TrainableHuggingfaceChatbot
-from utils import load_k_fold_dataset
+from load_dataset_CV import *
 
 
 # =========================
