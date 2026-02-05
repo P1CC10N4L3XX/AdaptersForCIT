@@ -16,7 +16,7 @@ from parse_string import LlamaParser
 from agents import AgentAction, HuggingfaceChatbot
 from utils import *
 
-from trainable_chatbot import TrainableHuggingfaceChatbot
+from TrainableHuggingfaceChatbot import TrainableHuggingfaceChatbot
 
 def set_seeds(seed):
     random.seed(seed)

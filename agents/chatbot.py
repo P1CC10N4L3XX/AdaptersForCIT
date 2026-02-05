@@ -45,7 +45,6 @@ class HuggingfaceChatbot:
         input_ids = tokenized.input_ids.to(self.model.device)
         attention_mask = tokenized.attention_mask.to(self.model.device)
         generation_config = self.model.generation_config
-        generation_config.max_length = 8192
         generation_config.max_new_tokens = max_new_tokens
         output = self.model.generate(
             input_ids,
