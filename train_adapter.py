@@ -48,6 +48,19 @@ def set_seeds(seed):
     np.random.seed(seed)
     torch.manual_seed(seed)
 
+def normalize_norm_type(norm_type: str) -> str:
+    norm_type = norm_type.strip().lower()
+
+    if norm_type in ["prohibit", "prohibited", "forbidden", "deny"]:
+        return "PROHIBITED"
+
+    if norm_type in ["permit", "permitted", "allowed", "allow"]:
+        return "PERMITTED"
+
+    if norm_type in ["not_related", "not related", "irrelevant", "none"]:
+        return "NOT_RELATED"
+
+    raise ValueError(f"Unknown norm_type: {norm_type}")
 
 def build_ci_decision_example(row):
     prompt = f"""You are an expert in Contextual Integrity and {DOMAIN} regulations.
@@ -81,7 +94,7 @@ Assistant:
 - Transmission Principle: {row.get('purpose', '')}
 
 Decision:
-{NORM2CHOICE[row['norm_type']]}
+{NORM2CHOICE[normalize_norm_type(row['norm_type'])]}
 """
 
     return {
@@ -176,7 +189,6 @@ def train_one_fold(fold_id, train_split):
         model=model,
         args=training_args,
         train_dataset=tokenized_dataset,
-        tokenizer=tokenizer,
         data_collator=data_collator,
     )
 
