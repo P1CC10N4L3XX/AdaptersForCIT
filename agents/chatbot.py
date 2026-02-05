@@ -23,7 +23,7 @@ class HuggingfaceChatbot:
             #max_memory=map_list,
             #torch_dtype="auto",
             cache_dir = CACHE_DIR,
-            torch_dtype=torch.bfloat16,
+            torch_dtype="auto",
             #trust_remote_code=True
         ).to(self.device)
         return model

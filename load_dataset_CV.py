@@ -71,4 +71,4 @@ def load_k_fold_dataset(input_path=config.K_FOLD_DATASET_PATH):
 if __name__ == "__main__":
     domain_folds = make_cases_dataset_CV()
     save_k_fold_dataset(domain_folds)
-    print(load_k_fold_dataset())
+    print(load_k_fold_dataset()[0]['GDPR']['train'])
