@@ -137,6 +137,7 @@ class LlamaParser:
 
     def parse_decision(self, response):
         ret = {"response": response}
+        #print("PARSED:\n" + str(response) + "\n")
         lines = response.replace("**", "").split("\n")
 
         for r in lines:

@@ -6,6 +6,7 @@ import numpy as np
 import torch
 import pandas as pd
 
+
 import config
 os.environ["HF_TOKEN"] = config.HF_TOKEN
 os.environ["HF_HOME"] = config.HF_HOME
@@ -15,6 +16,7 @@ from tqdm import tqdm
 from parse_string import LlamaParser
 from agents import AgentAction, HuggingfaceChatbot
 from utils import *
+from load_dataset_CV import *
 
 from TrainableHuggingfaceChatbot import TrainableHuggingfaceChatbot
 
@@ -29,8 +31,8 @@ def main(args):
     log(str(args), args.log_path)
 
     KBs = get_local_KB_dataset()
-    cases = get_local_case_dataset()
-
+    #cases = get_local_case_dataset()
+    cases = load_k_fold_dataset()[args.fold_test]
     if args.api_name:
         chatbot = ""
     else:
@@ -55,7 +57,8 @@ def main(args):
     for domain in args.domains.split("+"):
         assert domain in ["GDPR", "HIPAA", "AI_ACT", "ACLU"], "Invalid domain name"
 
-        case_dataset = cases[domain]
+        case_dataset = cases[domain]['test'].shuffle(seed=args.seed)
+        #case_dataset = cases[domain]['test']
         results = []
 
         for i, cur_case in enumerate(tqdm(case_dataset)):
@@ -149,6 +152,7 @@ if __name__ == "__main__":
     parser.add_argument("--api_token", type=str, default=config.api_key)
     parser.add_argument("--max_retry", type=int, default=5)
     parser.add_argument("--temperature", type=float, default=0.2)
+    parser.add_argument("--fold_test", type=int, default=0)
 
     parser.add_argument("--max_case_num", type=int, default=-1)
 
