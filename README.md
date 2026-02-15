@@ -46,7 +46,7 @@ The notebook includes:
 
 You can run the experiments directly in your browser using the link below:
 
-👉 **[Open in Google Colab](https://colab.research.google.com/drive/11xUEEYVxQVXyZV6Eey5hjnIls9hul2kg?usp=sharing)**
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/P1CC10N4L3XX/AdaptersForCIT/blob/main/notebook/AdapterForCIT.ipynb)
 
 > Note: For full-scale experiments (e.g., 7B models), a Colab Pro or Pro+ subscription with sufficient GPU memory is recommended.
 
